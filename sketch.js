@@ -13,7 +13,7 @@ function preload(){
 //Function to set initial environment
 function setup() {
 
- database=firebase.database();
+   database=firebase.database();
 
   createCanvas(1500,700);
 
@@ -23,6 +23,8 @@ function setup() {
 
   var balloonHeight=database.ref('balloon/height');
   balloonHeight.on("value",readHeight, showError);
+
+
 
   textSize(20); 
 }
@@ -57,7 +59,7 @@ function draw() {
   text("**Use arrow keys to move Hot Air Balloon!",40,40);
 }
 
- function updateHeight(x,y){
+function updateHeight(x,y){
    database.ref('balloon/height').set({
      'x': height.x + x ,
      'y': height.y + y
@@ -70,8 +72,9 @@ function draw() {
 //   balloon.x = height.x;
 //   balloon.y = height.y;
 // }
+
  function readHeight(data){
- height = data.val();
+   height = data.val();
    balloon.x = height.x;
   balloon.y = height.y;
  }
@@ -86,15 +89,6 @@ function draw() {
 //   balloon.y = height.y;
 // }
 
-/*function showError(){
+function showError(){
   console.log("Error in writing to the database");
-}*/
-
-const firebaseConfig = {
-  authDomain: "project-35-f33a2.firebaseapp.com",
-  databaseURL: "https://project-35-f33a2-default-rtdb.firebaseio.com",
-  projectId: "project-35-f33a2",
-  storageBucket: "project-35-f33a2.appspot.com",
-  messagingSenderId: "1055224786597",
-  appId: "1:1055224786597:web:6d3973444c7148af2ca74c"
 }
